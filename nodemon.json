@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "controllers",
+    "models",
+    "routes",
+    "db"
+  ],
+  "ext": "ts",
+  "ignore": [],
+  "exec": "node ./dist/app"
+}

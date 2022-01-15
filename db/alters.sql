@@ -1,0 +1,120 @@
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECHACREADO TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECINIACTIVIDADES DATE;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECCESACTIVIDADES DATE;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECREIACTIVIDADES DATE;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECACTUALIZACION DATE;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_CLASECONTRIBUYENTE VARCHAR(100);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_ESTADO VARCHAR(1) DEFAULT '1';
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_GMAPS VARCHAR(600) DEFAULT NULL;
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_FECHACREADO TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+create table SEG_MAEUBIGEOGRAFICA
+(
+    UBIGEO_CODIGO VARCHAR (25) not null,
+    UBIGEO_NOMBRE VARCHAR (100) not null,
+    UBIGEO_NIVEL SMALLINT (10) not null,
+    CAPITAL VARCHAR (1) default 0 not null,
+    COM_CODIGO VARCHAR (10) not null
+);
+
+-- clientes
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_FECHACONSULTA DATE;
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_BASEIVA VARCHAR(35);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_BASECERO VARCHAR(35);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_BASENOBJET VARCHAR(35);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_CIUDAD VARCHAR (25);
+
+
+
+-- proveedor
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_FECHACONSULTA DATE;
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_BASEIVA VARCHAR(35);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_BASECERO VARCHAR(35);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_BASENOBJET VARCHAR(35);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_CIUDAD VARCHAR (25);
+
+
+
+-- producto
+ALTER TABLE inv_maearticulo
+    ADD COLUMN ART_FECHACREADO TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE inv_maearticulo
+    ADD COLUMN ART_CUENTAINVENTARIO VARCHAR(35);
+
+ALTER TABLE inv_maearticulo
+    ADD COLUMN ART_CUENTACOSTOVENTAS VARCHAR(35);
+
+ALTER TABLE inv_maearticulo
+    ADD COLUMN ART_CUENTAVENTAS VARCHAR(35);
+
+ALTER TABLE inv_maearticulo
+    ADD COLUMN ART_CODIGOBARRAS TEXT;
+
+-- se añadio autoincrement en tabla de inv_enckardex
+-- esto facilita mucho la creación de los datos
+alter table inv_enckardex modify kdx_codigo int(38) auto_increment; 
+
+--  proveedores
+-- columnas Microempresa, Contribuyente especial, Empresa fantasma y Agente de retencion
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_MICROEMPRESA VARCHAR(2);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_CONTRIESPECIAL VARCHAR(2);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_EMPRESAFANTAS VARCHAR(2);
+
+ALTER TABLE com_maeproveedor
+    ADD COLUMN PRO_AGENRETENCION VARCHAR(2);
+
+
+--  clientes
+-- columnas Microempresa, Contribuyente especial, Empresa fantasma y Agente de retencion
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_MICROEMPRESA VARCHAR(80);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_CONTRIESPECIAL VARCHAR(2);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_EMPRESAFANTAS VARCHAR(2);
+
+ALTER TABLE ven_maecliente
+    ADD COLUMN CLI_AGENRETENCION VARCHAR(2);
