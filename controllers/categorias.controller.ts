@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
 import Categoria from '../models/categorias';
+import Productos from '../models/productos';
 
 export const getCategorias = async (req: Request, res: Response) => {
   const categorias = await Categoria.findAll();
@@ -94,6 +95,18 @@ export const deleteCategoria = async (req: Request, res: Response) => {
     if (!categoria) {
       return res.status(404).json({
         msg: 'No existe la categoría con el id ' + id,
+      });
+    }
+
+    const cate = await Productos.findOne({
+      where: {
+        id: id
+      },
+    });
+
+    if (cate) {
+      return res.status(403).json({
+        msg: `No se puede eliminar por que tiene productos asignados`,
       });
     }
 
